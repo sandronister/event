@@ -12,7 +12,7 @@ func main() {
 	defer ch.Close()
 
 	msgs := make(chan amqp091.Delivery)
-	go rabbimq.Consume(ch, msgs)
+	go rabbimq.Consume(ch, msgs, "orders")
 
 	for msg := range msgs {
 		fmt.Println(string(msg.Body))
